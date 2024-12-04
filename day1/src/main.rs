@@ -16,9 +16,15 @@ fn main() {
     let sum: u32 = diff.into_iter().sum();
     println!("{sum}");
 
-    let counts: Vec<usize> = lists[0].iter()
-        .map(|a| lists[1].iter().filter(|b| a == *b).count())
+    let counts: Vec<i32> = lists[0].iter()
+        .map(|a| lists[1].iter().filter(|b| a == *b).count() as i32)
         .collect();
+
+    let similarity_score: i32 = lists[0].iter().zip(counts)
+        .map(|(a, b)| a * b)
+        .sum();
+
+    println!("{similarity_score}");
 }
 
 fn parse_input(input: impl BufRead) -> [Vec<i32>; 2] {
