@@ -15,6 +15,10 @@ fn main() {
 
     let sum: u32 = diff.into_iter().sum();
     println!("{sum}");
+
+    let counts: Vec<usize> = lists[0].iter()
+        .map(|a| lists[1].iter().filter(|b| a == *b).count())
+        .collect();
 }
 
 fn parse_input(input: impl BufRead) -> [Vec<i32>; 2] {
