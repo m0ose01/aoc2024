@@ -9,18 +9,11 @@ fn main() {
         .map(|mut v| {v.sort(); v})
         .collect();
 
-    let list_length = lists[0].len();
-
-    assert!(list_length == lists[1].len());
-
-    let mut diff: Vec<u32> = Vec::with_capacity(list_length);
-
-    for ii in 0..lists[0].len() {
-        diff.push(lists[0][ii].abs_diff(lists[1][ii]));
-    }
+    let diff: Vec<u32> = lists[0].iter().zip(&lists[1])
+        .map(|(a, b)| i32::abs_diff(*a, *b))
+        .collect();
 
     let sum: u32 = diff.into_iter().sum();
-
     println!("{sum}");
 }
 
